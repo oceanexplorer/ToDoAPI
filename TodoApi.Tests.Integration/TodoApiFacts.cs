@@ -9,12 +9,12 @@ using FluentAssertions;
 
 namespace ToDoApi.Tests.Integration
 {
-    public class TodoManagerFacts
+    public class TodoApiFacts
     {
         private readonly TestServer _server;
         private readonly HttpClient _client;
 
-        public TodoManagerFacts()
+        public TodoApiFacts()
         {
             // Arrange
             _server = new TestServer(new WebHostBuilder().UseStartup<Startup>());

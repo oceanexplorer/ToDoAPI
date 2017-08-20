@@ -7,7 +7,7 @@ using FluentAssertions;
 using TodoApi.Domain;
 using System.Linq;
 
-namespace ToDoApi.Tests.Unit.TodoManager
+namespace ToDoApi.Tests.Unit.TodoManagerContainer
 {
     public class TodoManagerFacts
     {
