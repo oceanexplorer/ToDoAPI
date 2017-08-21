@@ -6,7 +6,8 @@ namespace TodoApi.Models
     {
         public TodoContext(DbContextOptions<TodoContext> options)
             :base(options)
-        {                        
+        {            
+            this.Database.Migrate();            
         }
 
         public DbSet<TodoItem> TodoItems { get;set; }

@@ -33,7 +33,9 @@ namespace TodoApi.Controllers
         [HttpPost]
         public IActionResult Create([FromBody] TodoItem item)
         {
-            if (item == null) return BadRequest();          
+            if (item == null) return BadRequest(); 
+
+            _todoManager.Add(item);         
 
             return CreatedAtRoute("GetTodo", new { id = item.Id }, item);
         }
