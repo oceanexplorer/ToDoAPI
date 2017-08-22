@@ -7,9 +7,11 @@ Ensure you have .Net Core 2.0 installed
 
 ## Running the application
 You can run the project from the command line with
-`dotnet restore`
-`dotnet build TodoApi.sln`
-`dotnet run --project TodoApi/TodoApi.csproj`
+```
+dotnet restore
+dotnet build TodoApi.sln
+dotnet run --project TodoApi/TodoApi.csproj
+```
 
 You can test the application with
 
