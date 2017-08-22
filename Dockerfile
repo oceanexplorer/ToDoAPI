@@ -1,5 +1,5 @@
 FROM microsoft/aspnetcore
 
 WORKDIR /dotnetapp
-COPY out .
+COPY build .
 ENTRYPOINT ["dotnet", "TodoApi.dll"]
