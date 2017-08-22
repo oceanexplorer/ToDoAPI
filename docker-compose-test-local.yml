@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+
+  app:
+    build: .
+    image: oceanexplorer/todoapi
+    environment:
+      SQLSERVER_SA_PASSWORD: "Testing123"
+      SQLSERVER_HOST: "sqlserver"
+
+  unit:
+    image: microsoft/dotnet
+    volumes:
+      - .:/usr/src/todoapi
+    working_dir: /usr/src/todoapi
+    command: "dotnet test TodoApi.Tests.Unit/TodoApi.Tests.Unit.csproj"
+
+  staging-dep:
+    image: oceanexplorer/todoapi
+    ports:
+      - 5000:5000
+    depends_on:
+      - db
+
+  staging:
+    image: microsoft/dotnet
+    volumes:
+      - .:/usr/src/todoapi
+    working_dir: /usr/src/todoapi
+    command: "dotnet test TodoApi.Tests.Integration/TodoApi.Tests.Integration.csproj"
+
+  db:
+    image: microsoft/mssql-server-linux
+    ports:
+      - "1433:1433"
+    container_name: sqlserver
+    environment:
+      SA_PASSWORD: "Testing123"
+      ACCEPT_EULA: "Y"
