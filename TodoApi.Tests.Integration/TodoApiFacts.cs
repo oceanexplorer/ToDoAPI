@@ -6,6 +6,11 @@ using Microsoft.AspNetCore.TestHost;
 using TodoApi;
 using Xunit;
 using FluentAssertions;
+using System.Net;
+using TodoApi.Models;
+using System.Text;
+using Newtonsoft.Json;
+using System.Net.Http.Headers;
 
 namespace ToDoApi.Tests.Integration
 {
@@ -19,6 +24,11 @@ namespace ToDoApi.Tests.Integration
             // Arrange
             _server = new TestServer(new WebHostBuilder().UseStartup<Startup>());
             _client = _server.CreateClient();
+
+            var todoItem = new TodoItem("Collect the children from school", false);
+            var jsonString = JsonConvert.SerializeObject(todoItem);            
+
+            _client.PostAsync("/api/todo", new StringContent(jsonString, Encoding.UTF8)).Wait();
         }
         
         [Fact]
@@ -28,8 +38,7 @@ namespace ToDoApi.Tests.Integration
             var response = await _client.GetAsync("/api/todo");
 
             // Assert
-            response.StatusCode.Should().Be(200);
-            
-        }
+            response.StatusCode.Should().Be(HttpStatusCode.OK);                   
+        }        
     }
 }
