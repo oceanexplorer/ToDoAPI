@@ -4,6 +4,7 @@ This project is a small application written in C# with ASP.NET Core. It is a Web
 
 ## Prerequisites
 Ensure you have .Net Core 2.0 installed
+https://www.microsoft.com/net/download/core
 
 ## Running the application
 You can run the project from the command line with
