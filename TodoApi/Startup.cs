@@ -26,9 +26,9 @@ namespace TodoApi
         {  
             var hostname = Environment.GetEnvironmentVariable("SQLSERVER_HOST") ?? "localhost";
             var password = Environment.GetEnvironmentVariable("SQLSERVER_SA_PASSWORD") ?? "Testing123";
-            var connectionString = $"Data Source={hostname};Initial Catalog=TodoManager;User ID=sa;Password={password};";       
+            var connectionString = $"Host={hostname};Database=TodoManager;Username=postgres;Password={password};";       
 
-            services.AddDbContext<TodoContext>(opt => opt.UseSqlServer(connectionString));
+            services.AddDbContext<TodoContext>(opt => opt.UseNpgsql(connectionString));
             services.AddMvc();
             services.AddTransient<TodoManager, TodoManager>();
         }
