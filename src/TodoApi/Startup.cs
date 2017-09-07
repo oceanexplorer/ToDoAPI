@@ -24,8 +24,8 @@ namespace TodoApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {  
-            var hostname = Environment.GetEnvironmentVariable("SQLSERVER_HOST") ?? "localhost";
-            var password = Environment.GetEnvironmentVariable("SQLSERVER_SA_PASSWORD") ?? "Testing123";
+            var hostname = Environment.GetEnvironmentVariable("DATABASE_HOST") ?? "localhost";
+            var password = Environment.GetEnvironmentVariable("DATABASE_SA_PASSWORD") ?? "Testing123";
             var connectionString = $"Host={hostname};Database=TodoManager;Username=postgres;Password={password};";       
 
             services.AddDbContext<TodoContext>(opt => opt.UseNpgsql(connectionString));

@@ -1,0 +1,48 @@
+version: '3.3'
+
+services:
+
+  app:
+    build: .
+    image: oceanexplorer/todoapi
+
+  unit:
+    image: microsoft/dotnet
+    volumes:
+      - .:/usr/src/todoapi
+    working_dir: /usr/src/todoapi
+    command: "dotnet test TodoApi.Tests.Unit/TodoApi.Tests.Unit.csproj"
+
+  staging-dep:
+    image: oceanexplorer/todoapi
+    ports:
+      - 5000:80
+    environment:
+      DATABASE_SA_PASSWORD: Testing123
+      DATABASE_HOST: postgres-server 
+    depends_on:
+      - db
+
+  staging:
+    image: microsoft/dotnet
+    volumes:  
+      - .:/usr/src/todoapi
+    working_dir: /usr/src/todoapi
+    command: "dotnet test TodoApi.Tests.Integration/TodoApi.Tests.Integration.csproj --no-build"
+    environment:
+      DATABASE_SA_PASSWORD: Testing123
+      DATABASE_HOST: postgres-server 
+
+  db:
+    image: postgres
+    restart: always    
+    ports:
+      - 5432:5432
+    container_name: postgres-server
+    environment:
+      POSTGRES_PASSWORD: Testing123
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:    

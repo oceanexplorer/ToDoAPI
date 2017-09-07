@@ -7,7 +7,7 @@ namespace TodoApi.Models
         public TodoContext(DbContextOptions<TodoContext> options)
             :base(options)
         {            
-            if(this.Database.IsSqlServer())
+            if(this.Database.IsNpgsql())
             {
                 this.Database.Migrate();
             }
