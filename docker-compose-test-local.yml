@@ -9,9 +9,9 @@ services:
   unit:
     image: microsoft/dotnet
     volumes:
-      - .:/usr/src/todoapi
-    working_dir: /usr/src/todoapi
-    command: "dotnet test tests/TodoApi.Tests.Unit/TodoApi.Tests.Unit.csproj"
+      - .:/usr/todoapi
+    working_dir: /usr/todoapi/tests/TodoApi.Tests.Unit
+    command: "dotnet test"
 
   staging-dep:
     image: oceanexplorer/todoapi
@@ -27,9 +27,9 @@ services:
   staging:
     image: microsoft/dotnet    
     volumes:  
-      - .:/usr/src/todoapi
-    working_dir: /usr/src/todoapi
-    command: "dotnet test tests/TodoApi.Tests.Integration/TodoApi.Tests.Integration.csproj"
+      - .:/usr/todoapi
+    working_dir: /usr/todoapi/tests/TodoApi.Tests.Integration
+    command: "dotnet test"
     environment:
       DATABASE_SA_PASSWORD: Testing123
       DATABASE_HOST: postgres-server 
