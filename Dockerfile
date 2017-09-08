@@ -34,4 +34,4 @@ EXPOSE 5000/tcp
 ENTRYPOINT ["dotnet", "TodoApi.dll"]
 
 # Add a healthcheck to the container
-# HEALTHCHECK --interval=10s CMD wget -qO- localhost:5000/api/healthcheck
+HEALTHCHECK --interval=10s CMD curl --fail localhost:5000/api/healthcheck || exit 1
