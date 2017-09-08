@@ -15,13 +15,13 @@ namespace TodoApi.Controllers
             _todoManager = todoManager;
         }
 
-        public IEnumerable<TodoItem> GetAll()
+        public IEnumerable<TodoItem> Index()
         {
             return _todoManager.GetAll();
         }
 
         [HttpGet("{id}", Name = "GetTodo")]
-        public IActionResult GetById(long id)
+        public IActionResult Show(long id)
         {
             var item = _todoManager.GetById(id);
 
@@ -51,12 +51,11 @@ namespace TodoApi.Controllers
         }        
         
         [HttpDelete("{id}")]
-        public IActionResult Delete(long id)
+        public IActionResult Destroy(long id)
         {
             _todoManager.Remove(id);
             
             return new NoContentResult();
         }
-    }
-    
+    }    
 }
