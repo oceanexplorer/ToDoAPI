@@ -33,7 +33,9 @@ namespace TodoApi.Domain
         public void Update(TodoItem item)
         {
             var todo = _context.TodoItems.FirstOrDefault(t => t.Id == item.Id);
-                        
+
+            if(todo == null) return;
+                       
             todo.IsComplete = item.IsComplete;
             todo.Name = item.Name;
 
