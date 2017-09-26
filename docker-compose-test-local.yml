@@ -17,8 +17,9 @@ services:
     image: oceanexplorer/todoapi
     container_name: todoapi
     ports:
-      - 5000:5000
+      - 5050:5050
     environment:
+      ASPNETCORE_URLS: http://0.0.0.0:5050
       DATABASE_SA_PASSWORD: Testing123
       DATABASE_HOST: postgres-server 
     depends_on:
