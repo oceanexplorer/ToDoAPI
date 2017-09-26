@@ -19,13 +19,13 @@ WORKDIR /app
 COPY --from=build-env /build/out .
 
 # Set environment variables
-ENV ASPNETCORE_URLS="http://*:5000"
+ENV ASPNETCORE_URLS="http://*:5050"
 
 # Open port 
-EXPOSE 5000/tcp
+EXPOSE 5050/tcp
 
 # Run the app
 ENTRYPOINT ["dotnet", "TodoApi.dll"]
 
 # Add a healthcheck to the container
-HEALTHCHECK --interval=10s CMD curl --fail localhost:5000/api/healthcheck || exit 1
+HEALTHCHECK --interval=10s CMD curl --fail localhost:5050/api/healthcheck || exit 1
