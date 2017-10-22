@@ -13,6 +13,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{8D25679E
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoApi.Tests.Production", "tests\TodoApi.Tests.Production\TodoApi.Tests.Production.csproj", "{AEEE69E9-768E-4423-AEC2-536AE3F3032B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{0B716A41-FEA8-4641-9466-C0677EDADA9E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,5 +79,8 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{AEEE69E9-768E-4423-AEC2-536AE3F3032B} = {8D25679E-C524-4080-9C26-5BBD5404DB5F}
+		{FDA43DCB-F012-4D03-A5E3-25C6FE090990} = {8D25679E-C524-4080-9C26-5BBD5404DB5F}
+		{E26CA2CB-8283-40FA-A729-9DD6FB99278C} = {8D25679E-C524-4080-9C26-5BBD5404DB5F}
+		{1EC76D55-7C30-4A05-ABF6-3208F0F4A68D} = {0B716A41-FEA8-4641-9466-C0677EDADA9E}
 	EndGlobalSection
 EndGlobal
