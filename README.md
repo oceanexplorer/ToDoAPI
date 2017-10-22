@@ -19,10 +19,10 @@ You can test the application with
 `dotnet test TodoApi.sln`
 
 ## Running in Docker
-The TodoApi relies on SQL server and we can run this using Dokcer with the command
+The TodoApi relies on Postgres server and we can run this using Dokcer with the command
 
 ```
-docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=Testing123' -p 1433:1433 --name sqlserver -d microsoft/mssql-server-linux
+docker run -e 'POSTGRES_PASSWORD=Testing123' -p 5432:5432 --name postgres-server -d postgres
 ```
 
 You can compile the project into a docker image by running the following :
@@ -31,5 +31,5 @@ You can compile the project into a docker image by running the following :
 dotnet publish TodoApi.sln -c Release -o ../build 
 docker build -t todoapi .
 
-docker run -it --rm -p 5000:80 --link sqlserver -e SQLSERVER_HOST=sqlserver todoapi
+docker run -it --rm -p 5000:80 --link postgres-server -e DATABASE_HOST=posntgres-server -e DATABASE_SA_PASSWORD=Testing123 todoapi  
 ```
