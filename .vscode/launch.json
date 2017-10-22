@@ -12,7 +12,7 @@
             // If you have changed target frameworks, make sure to update the program path.
             "program": "${workspaceRoot}/src/TodoApi/bin/Debug/netcoreapp2.0/TodoApi.dll",
             "args": [],
-            "cwd": "${workspaceRoot}/src/TodoApi",
+            "cwd": "${workspaceRoot}",
             "stopAtEntry": false,
             "internalConsoleOptions": "openOnSessionStart",
             "launchBrowser": {

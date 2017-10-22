@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoApi.Tests.Unit", "tests
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoApi.Tests.Integration", "tests\TodoApi.Tests.Integration\TodoApi.Tests.Integration.csproj", "{FDA43DCB-F012-4D03-A5E3-25C6FE090990}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{8D25679E-C524-4080-9C26-5BBD5404DB5F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoApi.Tests.Production", "tests\TodoApi.Tests.Production\TodoApi.Tests.Production.csproj", "{AEEE69E9-768E-4423-AEC2-536AE3F3032B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -58,5 +62,20 @@ Global
 		{FDA43DCB-F012-4D03-A5E3-25C6FE090990}.Release|x64.Build.0 = Release|x64
 		{FDA43DCB-F012-4D03-A5E3-25C6FE090990}.Release|x86.ActiveCfg = Release|x86
 		{FDA43DCB-F012-4D03-A5E3-25C6FE090990}.Release|x86.Build.0 = Release|x86
+		{AEEE69E9-768E-4423-AEC2-536AE3F3032B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEEE69E9-768E-4423-AEC2-536AE3F3032B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEEE69E9-768E-4423-AEC2-536AE3F3032B}.Debug|x64.ActiveCfg = Debug|x64
+		{AEEE69E9-768E-4423-AEC2-536AE3F3032B}.Debug|x64.Build.0 = Debug|x64
+		{AEEE69E9-768E-4423-AEC2-536AE3F3032B}.Debug|x86.ActiveCfg = Debug|x86
+		{AEEE69E9-768E-4423-AEC2-536AE3F3032B}.Debug|x86.Build.0 = Debug|x86
+		{AEEE69E9-768E-4423-AEC2-536AE3F3032B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEEE69E9-768E-4423-AEC2-536AE3F3032B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AEEE69E9-768E-4423-AEC2-536AE3F3032B}.Release|x64.ActiveCfg = Release|x64
+		{AEEE69E9-768E-4423-AEC2-536AE3F3032B}.Release|x64.Build.0 = Release|x64
+		{AEEE69E9-768E-4423-AEC2-536AE3F3032B}.Release|x86.ActiveCfg = Release|x86
+		{AEEE69E9-768E-4423-AEC2-536AE3F3032B}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{AEEE69E9-768E-4423-AEC2-536AE3F3032B} = {8D25679E-C524-4080-9C26-5BBD5404DB5F}
 	EndGlobalSection
 EndGlobal

@@ -33,10 +33,31 @@ services:
     command: "dotnet test"
     environment:
       DATABASE_SA_PASSWORD: Testing123
-      DATABASE_HOST: postgres-server 
+      DATABASE_HOST: postgres-server
+
+  production:
+    image: microsoft/dotnet
+    volumes:
+      - .:/usr/todoapi    
+    environment:
+      - HOST_IP=${HOST_IP}
+    working_dir: /usr/todoapi/tests/TodoApi.Tests.Production
+    network_mode: host
+    command: "dotnet test"
+
+  production-loop:
+    image: microsoft/dotnet
+    volumes:
+      - .:/usr/todoapi    
+    environment:
+      - HOST_IP=${HOST_IP}
+      - DURATION=1
+    working_dir: /usr/todoapi/tests/TodoApi.Tests.Production
+    network_mode: host
+    command: "dotnet test"
 
   db:
-    image: postgres
+    image: postgres 
     restart: always    
     ports:
       - 5432:5432
