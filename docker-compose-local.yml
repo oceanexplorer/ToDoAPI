@@ -1,0 +1,32 @@
+version: '3.3'
+
+services:
+
+  app:
+    build: .
+    image: oceanexplorer/todoapi
+
+  local:
+    image: oceanexplorer/todoapi
+    container_name: todoapi
+    ports:
+      - 5050:5050
+    environment:
+      DATABASE_SA_PASSWORD: Testing123
+      DATABASE_HOST: postgres-server 
+    depends_on:
+      - db 
+
+  db:
+    image: postgres 
+    restart: always    
+    ports:
+      - 5432:5432
+    container_name: postgres-server
+    environment:
+      POSTGRES_PASSWORD: Testing123
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:    
