@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Net.Http;
 using Xunit;
+using Xunit.Abstractions;
 using FluentAssertions;
 using System.Net;
 using System.Threading.Tasks;
@@ -10,14 +11,21 @@ namespace TodoApi.Tests.Production
 {
     public class TodoManager
     {
+        private readonly ITestOutputHelper _output;
+
+        public TodoManager(ITestOutputHelper output)            
+        {            
+            _output = output;
+        }
+
         [Fact]
         public async Task CallingHealthCheckReturnStatus200()
-        {
+        {            
             var sw = new Stopwatch();
             sw.Start();
 
             var duration = Environment.GetEnvironmentVariable("DURATION");
-            var hostIp = Environment.GetEnvironmentVariable("HOST_IP");
+            var hostIp = Environment.GetEnvironmentVariable("HOST_IP");           
 
             if(duration != null && duration.Length > 0)
             {
@@ -48,12 +56,12 @@ namespace TodoApi.Tests.Production
                     }  
                     else
                     {
-                        response.StatusCode.Should().Be(HttpStatusCode.OK);
+                        response.StatusCode.Should().Be(HttpStatusCode.OK, "because we expected a successful response");
                     }   
 
                     if(sw.Elapsed.Minutes > minutes)
                     {
-                        Debug.WriteLine($"{minutes} out of {max} passed");
+                        _output.WriteLine($"{minutes} out of {max} passed");
                         minutes++;
                     }
 
