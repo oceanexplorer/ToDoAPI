@@ -21,7 +21,7 @@ namespace TodoApi
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
-                .UseKestrel(options => options.Listen(IPAddress.Loopback, 5050))
+                .UseKestrel(options => options.Listen(IPAddress.Any, 5050))
                 .Build();
     }
 }
