@@ -4,10 +4,6 @@ services:
 
   app:
     build: .
-    image: oceanexplorer/todoapi
-
-  local:
-    image: oceanexplorer/todoapi
     container_name: todoapi
     ports:
       - 5050:5050
