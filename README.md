@@ -19,3 +19,25 @@ docker-compose -f docker-compose-local.yml up -d app
 ```
 docker-compose -f docker-compose-local.yml down
 ```
+
+## Adding a Todo item
+Using Postman (https://www.getpostman.com) create a POST request to http://localhost:5050/api/todo with a body:
+```
+{
+    "name": "Listen to music",
+    "isComplete": false
+}
+```
+
+## Retrieve a Todo item
+Using Postman create a GET request to http://localhost:5050/api/todo/1
+
+## Update a Todo item
+Using Postman create a PUT request to http://localhost:5050/api/todo with a body:
+```
+{
+    "id": 1,
+    "name": "Listen to music",
+    "isComplete": true
+}
+```
