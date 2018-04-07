@@ -6,7 +6,7 @@ services:
     image: oceanexplorer/todoapi
     environment:
       DATABASE_SA_PASSWORD: Testing123
-      DATABASE_HOST: postgres-server
+      DATABASE_HOST: db 
     networks: 
       - proxy
       - default 
