@@ -1,31 +1,22 @@
-# Get the base image
+# Create build container and build the project
 FROM microsoft/dotnet:2.1-sdk AS build
-WORKDIR /build
+WORKDIR /src
+COPY /src/TodoApi/TodoApi.csproj TodoApi/
+RUN dotnet restore TodoApi/TodoApi.csproj
+COPY /src/TodoApi TodoApi/
+WORKDIR /src/TodoApi
+RUN dotnet build -c Release -o /app
 
-# Caches restore result by copying csproj files separately
-COPY src/TodoApi/TodoApi.csproj .
-RUN dotnet restore
+# Publish application ready for deployment
+FROM build AS publish
+RUN dotnet publish -c Release -o /app
 
-# Copy everything else and build
-COPY ./src/TodoApi .
-RUN dotnet publish -c Release -o out
-
-# Build runtime image
-FROM microsoft/dotnet:2.1-aspnetcore-runtime
+# Take contents of published code and add to a runtime container
+FROM microsoft/dotnet:2.1-aspnetcore-runtime as final
 MAINTAINER Paul Custance <pcustance@gmail.com>
 WORKDIR /app
-
-# Copy build output from previous build container to this one
-COPY --from=build /build/out .
-
-# Set environment variables
+COPY --from=publish /app .
 ENV ASPNETCORE_URLS="http://*:5050"
-
-# Open port 
 EXPOSE 5050/tcp
-
-# Run the app
 ENTRYPOINT ["dotnet", "TodoApi.dll"]
-
-# Add a healthcheck to the container
 HEALTHCHECK --interval=10s CMD curl --fail localhost:5050/api/healthcheck || exit 1
