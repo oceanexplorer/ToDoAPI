@@ -13,8 +13,6 @@ namespace TodoApi
 {
     public class Startup
     {
-        private readonly IHostingEnvironment _env;        
-
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
