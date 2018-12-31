@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+
+  main:
+    image: oceanexplorer/todoapi
+    environment:
+      DATABASE_SA_PASSWORD: Testing123
+      DATABASE_HOST: db 
+    networks: 
+      - proxy
+      - default 
+    deploy:
+      replicas: 3
+      labels:
+        - com.df.notify=true
+        - com.df.distribute=true
+        - com.df.servicePath=/api
+        - com.df.port=5050
+    
+  db:
+    image: postgres
+    networks: 
+      - default
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      
+volumes:
+  pgdata:
+
+networks: 
+  default:
+    external: false
+  proxy:
+    external: true
