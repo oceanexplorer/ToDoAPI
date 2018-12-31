@@ -6,6 +6,7 @@ using TodoApi.Models;
 namespace TodoApi.Controllers
 {
     [Route("api/[controller]")]
+    [ApiController]
     public class TodoController : Controller
     {
         private readonly TodoManager _todoManager;

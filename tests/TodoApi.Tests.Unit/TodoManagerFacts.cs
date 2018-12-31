@@ -52,7 +52,7 @@ namespace ToDoApi.Tests.Unit.TodoManagerContainer
             var outputTodoItem = _sut.GetById(1);
 
             // Assert
-            outputTodoItem.ShouldBeEquivalentTo(inputTodoItem);
+            outputTodoItem.Should().BeEquivalentTo(inputTodoItem);
         }
     }
 
@@ -103,7 +103,7 @@ namespace ToDoApi.Tests.Unit.TodoManagerContainer
             _sut.Update(updatedToDoItem);
 
             // Assert
-            _sut.GetById(1).ShouldBeEquivalentTo(updatedToDoItem);
+            _sut.GetById(1).Should().BeEquivalentTo(updatedToDoItem);
         }
     }    
 }

@@ -1,9 +1,12 @@
-version: '3.3'
+version: '3.4'
 
 services:
 
-  app:
-    build: .
+  todoapi:
+    image: oceanexplorer/todoapi
+    build:
+      context: .
+      dockerfile: src/TodoApi/Dockerfile
     container_name: todoapi
     ports:
       - 5050:5050
@@ -15,7 +18,7 @@ services:
 
   db:
     image: postgres 
-    restart: always    
+    restart: always
     ports:
       - 5432:5432
     container_name: postgres-server
@@ -25,4 +28,4 @@ services:
       - pgdata:/var/lib/postgresql/data
 
 volumes:
-  pgdata:    
+  pgdata:
