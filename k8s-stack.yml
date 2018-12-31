@@ -1,0 +1,103 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: todo-api-demo-db
+spec:
+  selector:
+    matchLabels:
+      type: db
+      service: todo-api-demo
+  strategy: 
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        type: db
+        service: todo-api-demo
+        vendor: postgres
+    spec:
+      containers:
+        - name: todo-api-demo-db
+          image: postgres
+          ports:
+          - containerPort: 5432
+          env:
+          - name: POSTGRES_PASSWORD
+            value: Testing123
+          resources: {}
+          volumeMounts:
+          - mountPath: /var/lib/postgresql/data
+            name: pgdata
+      volumes:
+      - name: pgdata
+        persistentVolumeClaim:
+          claimName: pgdata
+      
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: todo-api-demo-db
+spec:
+  ports:
+  - port: 5432
+    targetPort: 5432
+  selector:
+    type: db
+    service: todo-api-demo
+
+---
+
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: todo-api-demo-api
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      type: api
+      service: todo-api-demo
+  template: 
+    metadata:
+      labels:
+        type: api
+        service: todo-api-demo
+        language: csharp
+    spec:
+      containers:
+      - name: todo-api-demo-api
+        image: oceanexplorer/todoapi
+        ports:
+        - containerPort: 5050 
+        env:
+        - name: DATABASE_HOST
+          value: todo-api-demo-db
+        - name: DATABASE_SA_PASSWORD
+          value: Testing123
+        readinessProbe:
+          httpGet:
+            path: /api/todo
+            port: 5050
+          periodSeconds: 1
+        livenessProbe:
+          httpGet:
+            path: /api/todo
+            port: 5050
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: todo-api-demo-api
+spec:
+  type: NodePort
+  ports:
+  - name: "5050"
+    port: 5050
+    targetPort: 5050
+  selector:
+   type: api
+   service: todo-api-demo
